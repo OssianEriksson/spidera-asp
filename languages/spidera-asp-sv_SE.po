@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spidera-asp 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/spidera-asp\n"
-"POT-Creation-Date: 2022-02-08T16:25:55+00:00\n"
+"POT-Creation-Date: 2022-02-08T17:38:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Ossian Eriksson\n"
 "Language-Team: Swedish\n"
@@ -30,3 +30,7 @@ msgstr ""
 #. Author URI of the plugin
 msgid "https://github.com/OssianEriksson"
 msgstr ""
+
+#: build/popup.tsx.js:170
+msgid "Kom på spideras aspkväll!"
+msgstr "Visit the asp of Spidera!"
