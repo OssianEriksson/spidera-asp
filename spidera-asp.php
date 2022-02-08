@@ -32,53 +32,53 @@
 
 namespace Ftek\SpideraAsp;
 
-if ( ! defined( 'WPINC' ) || is_admin() ) {
+if ( ! defined( 'WPINC' ) ) {
 	exit;
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
+if ( ! is_admin() ) {
+	require_once __DIR__ . '/vendor/autoload.php';
 
-define( __NAMESPACE__ . '\PLUGIN_FILE', __FILE__ );
-define( __NAMESPACE__ . '\PLUGIN_ROOT', dirname( PLUGIN_FILE ) );
+	define( __NAMESPACE__ . '\PLUGIN_FILE', __FILE__ );
+	define( __NAMESPACE__ . '\PLUGIN_ROOT', dirname( PLUGIN_FILE ) );
 
-/**
- * Loads the plugin's translated strings
- */
-function load_translations() {
-	$plugin_rel_path = plugin_basename( PLUGIN_ROOT ) . '/languages';
-	load_plugin_textdomain( 'spidera-asp', false, $plugin_rel_path );
+	add_action(
+		'init',
+		function() {
+			$plugin_rel_path = plugin_basename( PLUGIN_ROOT ) . '/languages';
+			load_plugin_textdomain( 'spidera-asp', false, $plugin_rel_path );
+		}
+	);
+
+	add_action(
+		'wp_enqueue_scripts',
+		function() {
+			$asset = require PLUGIN_ROOT . '/build/popup.tsx.asset.php';
+			wp_enqueue_style(
+				'spidera-asp-popup',
+				plugins_url( '/build/popup.tsx.css', PLUGIN_FILE ),
+				array( 'wp-components' ),
+				$asset['version']
+			);
+			wp_enqueue_script(
+				'spidera-asp-popup',
+				plugins_url( '/build/popup.tsx.js', PLUGIN_FILE ),
+				$asset['dependencies'],
+				$asset['version'],
+				true
+			);
+			wp_set_script_translations(
+				'spidera-asp-popup',
+				'spidera-asp',
+				PLUGIN_ROOT . '/languages'
+			);
+			wp_localize_script(
+				'spidera-asp-popup',
+				'php',
+				array(
+					'imgUrl' => plugins_url( '/img/affisch.png', PLUGIN_FILE ),
+				)
+			);
+		}
+	);
 }
-
-add_action( 'init', __NAMESPACE__ . '\load_translations' );
-
-add_action(
-	'wp_enqueue_scripts',
-	function() {
-		$asset = require PLUGIN_ROOT . '/build/popup.tsx.asset.php';
-		wp_enqueue_style(
-			'spidera-asp-popup',
-			plugins_url( '/build/popup.tsx.css', PLUGIN_FILE ),
-			array( 'wp-components' ),
-			$asset['version']
-		);
-		wp_enqueue_script(
-			'spidera-asp-popup',
-			plugins_url( '/build/popup.tsx.js', PLUGIN_FILE ),
-			$asset['dependencies'],
-			$asset['version'],
-			true
-		);
-		wp_set_script_translations(
-			'spidera-asp-popup',
-			'spidera-asp',
-			PLUGIN_ROOT . '/languages'
-		);
-		wp_localize_script(
-			'spidera-asp-popup',
-			'php',
-			array(
-				'imgUrl' => plugins_url( '/img/affisch.png', PLUGIN_FILE ),
-			)
-		);
-	}
-);
