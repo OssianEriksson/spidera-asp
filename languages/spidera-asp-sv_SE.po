@@ -32,5 +32,5 @@ msgid "https://github.com/OssianEriksson"
 msgstr ""
 
 #: build/popup.tsx.js:1
-msgid "OBS: Change of location! Visit the asp of Spidera!"
-msgstr "OBS: Lokaländring! Kom på spideras aspkväll!"
+msgid "OBS: Change of location: FL51! Visit the asp of Spidera!"
+msgstr "OBS: Lokaländring: FL51! Kom på spideras aspkväll!"
