@@ -76,7 +76,7 @@ if ( ! is_admin() ) {
 				'spidera-asp-popup',
 				'php',
 				array(
-					'imgUrl' => plugins_url( '/img/affisch.png', PLUGIN_FILE ),
+					'imgUrl' => plugins_url( '/img/affisch-1.png', PLUGIN_FILE ),
 				)
 			);
 		}
