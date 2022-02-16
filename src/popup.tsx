@@ -45,6 +45,7 @@ function Popup(): JSX.Element {
 			)}
 			onRequestClose={closeModal}
 		>
+			<p>{__('Bring your own computer!', 'spidera-asp')}</p>
 			<img className="asp-img" src={php.imgUrl} />
 		</Modal>
 	);
