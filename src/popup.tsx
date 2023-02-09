@@ -40,7 +40,7 @@ function Popup(): JSX.Element {
 	return (
 		<Modal
 			title={__(
-				'OBS: Change of location: FL51! Visit the asp of Spidera!',
+				'Visit the asp of Spidera!',
 				'spidera-asp'
 			)}
 			onRequestClose={closeModal}
